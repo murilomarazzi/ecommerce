@@ -16,7 +16,7 @@ public class CreateUserRequest {
     private String name;
 
     @NotBlank
-    @Size(max = 8)
+    @Size(min = 6)
     private String password;
 
     @NotBlank
