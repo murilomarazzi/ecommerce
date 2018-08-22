@@ -1,12 +1,14 @@
 package br.com.leonardoferreira.ecommerce.oauth.domain.request;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
+@ToString(exclude = {"password", "matchPassword"})
 public class CreateUserRequest {
 
     @NotBlank
