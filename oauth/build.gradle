@@ -1,6 +1,8 @@
+import java.text.SimpleDateFormat
+
 buildscript {
     ext {
-        springBootVersion = '2.0.4.RELEASE'
+        springBootVersion = "2.0.4.RELEASE"
     }
     repositories {
         mavenCentral()
@@ -10,13 +12,14 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "checkstyle"
+apply from: "gradle/tasks/CreateMigration.gradle"
 
-group = 'br.com.leonardoferreira.ecommerce'
-version = '0.0.1-SNAPSHOT'
+group = "br.com.leonardoferreira.ecommerce"
+version = "0.0.1-SNAPSHOT"
 sourceCompatibility = 1.8
 
 repositories {
@@ -24,26 +27,36 @@ repositories {
 }
 
 ext {
-    springCloudVersion = 'Finchley.SR1'
+    springCloudVersion = "Finchley.SR1"
 }
 
 dependencies {
-//    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile "org.springframework.boot:spring-boot-starter-data-jpa"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-actuator"
 
-    compile("org.springframework.cloud:spring-cloud-starter-sleuth")
-    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
-    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    compile "org.springframework.cloud:spring-cloud-starter-sleuth"
+    compile "org.springframework.cloud:spring-cloud-starter-oauth2"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
 
-//    runtime('org.postgresql:postgresql')
+    compile "org.postgresql:postgresql"
+    compile "org.projectlombok:lombok"
 
-    compileOnly('org.projectlombok:lombok')
+    compile "org.mapstruct:mapstruct-jdk8:1.2.0.Final"
+    compile "org.mapstruct:mapstruct-processor:1.2.0.Final"
 
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile "org.flywaydb:flyway-core"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
 
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
+}
+
+checkstyle {
+    toolVersion = "8.11"
+    configFile = new File(rootDir, "checkstyle.xml")
 }

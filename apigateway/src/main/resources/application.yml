@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ecommerce-apigateway
+    name: api-gateway
 
 server:
   port: 8083
@@ -8,15 +8,16 @@ server:
 security:
   oauth2:
     client:
-      client-id: acme
-      client-secret: acmesecret
+      client-id: api-gateway
+      client-secret: api-gateway-secret
       access-token-uri: http://localhost:8080/oauth/token
-      user-authorization-uri: http://localhost:8080/oauth/authorize
+      user-authorization-uri: htrltp://localhost:8080/oauth/authorize
       scope:
-        - "openid"
+        - read
+        - write
       authorized-grant-types:
-        - "password"
-        - "refresh_token"
+        - password
+        - refresh_token
       resource-ids:
         - apigateway
     resource:
