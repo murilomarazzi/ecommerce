@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ecommerce-apigateway
+
+server:
+  port: 8083
+
+security:
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+      scope:
+        - "openid"
+      authorized-grant-types:
+        - "password"
+        - "refresh_token"
+      resource-ids:
+        - apigateway
+    resource:
+      user-info-uri: http://localhost:8080/users/me
+
+zuul:
+  ignored-services: '*'
+  routes:
+    products:
+      path: /products/**
+      service-id: ecommerce-product
+      strip-prefix: false
