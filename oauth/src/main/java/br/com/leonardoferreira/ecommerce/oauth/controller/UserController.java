@@ -1,6 +1,7 @@
 package br.com.leonardoferreira.ecommerce.oauth.controller;
 
 import br.com.leonardoferreira.ecommerce.oauth.domain.request.CreateUserRequest;
+import br.com.leonardoferreira.ecommerce.oauth.domain.response.UserInfo;
 import br.com.leonardoferreira.ecommerce.oauth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -25,6 +26,11 @@ public class UserController {
     @GetMapping("/me")
     public Principal user(final Principal principal) {
         return principal;
+    }
+
+    @GetMapping("/me/info")
+    public UserInfo user() {
+        return userService.findUserInfo();
     }
 
     @PostMapping

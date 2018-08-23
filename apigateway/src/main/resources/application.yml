@@ -23,10 +23,19 @@ security:
     resource:
       user-info-uri: http://localhost:8080/users/me
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
 zuul:
   ignored-services: '*'
   routes:
     products:
       path: /products/**
-      service-id: ecommerce-product
+      service-id: product
       strip-prefix: false
