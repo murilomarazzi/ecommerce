@@ -7,13 +7,8 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 @Slf4j
 @Component
@@ -26,49 +21,28 @@ public class CleanDatabase {
     public void clean() {
         try (Connection connection = dataSource.getConnection();
              Statement stmt = connection.createStatement()) {
-
-            Set<String> tables = findAllTables(connection);
-            Map<String, String> primaryKeys = findAllPrimaryKeys(connection);
-
-            stmt.executeUpdate("SET REFERENTIAL_INTEGRITY FALSE");
-            for (String table : tables) {
-                stmt.executeUpdate("TRUNCATE TABLE " + table);
-                stmt.executeUpdate("ALTER TABLE " + table + " ALTER COLUMN " + primaryKeys.get(table) + " RESTART WITH 1");
-            }
-            stmt.executeUpdate("SET REFERENTIAL_INTEGRITY TRUE");
+            stmt.executeUpdate("SET REFERENTIAL_INTEGRITY = 0");
+            truncateTables(connection, stmt);
+            restartSequences(connection, stmt);
+            stmt.executeUpdate("SET REFERENTIAL_INTEGRITY = 1");
         }
     }
 
     @SneakyThrows
-    private Map<String, String> findAllPrimaryKeys(final Connection connection) {
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM INFORMATION_SCHEMA.CONSTRAINTS")) {
-            Map<String, String> pks = new HashMap<>();
-
+    private void truncateTables(final Connection connection, final Statement stmt) {
+        try (ResultSet rs = connection.createStatement().executeQuery("SHOW TABLES")) {
             while (rs.next()) {
-                String constraintType = rs.getString("CONSTRAINT_TYPE");
-                if ("PRIMARY_KEY".equalsIgnoreCase(constraintType)) {
-                    pks.put(rs.getString("TABLE_NAME"), rs.getString("COLUMN_LIST"));
-                }
+                stmt.executeUpdate("TRUNCATE TABLE " + rs.getString("TABLE_NAME"));
             }
-
-            return pks;
         }
     }
 
     @SneakyThrows
-    private Set<String> findAllTables(final Connection connection) {
-        Set<String> tables = new HashSet<>();
-
-        DatabaseMetaData metaData = connection.getMetaData();
-        try (ResultSet rs = metaData.getTables(null, null, "%", null)) {
+    private void restartSequences(final Connection connection, final Statement stmt) {
+        try (ResultSet rs = connection.createStatement().executeQuery("SELECT SEQUENCE_NAME FROM INFORMATION_SCHEMA.SEQUENCES")) {
             while (rs.next()) {
-                if ("TABLE".equalsIgnoreCase(rs.getString(4))) {
-                    tables.add(rs.getString(3));
-                }
+                stmt.executeUpdate("ALTER SEQUENCE " + rs.getString("SEQUENCE_NAME") + " RESTART WITH 1");
             }
         }
-
-        return tables;
     }
 }
