@@ -17,21 +17,21 @@ public interface ProductMapper {
 
     List<ProductResponse> productsToResponses(List<Product> products);
 
-    @Mappings({
+    @Mappings({ // @formatter:off
             @Mapping(target = "price",      numberFormat = "R$ #.00"),
             @Mapping(target = "createdAt",  dateFormat = "dd/MM/yyyy HH:mm"),
             @Mapping(target = "updatedAt",  dateFormat = "dd/MM/yyyy HH:mm")
-    })
+    }) // @formatter:on
     ProductResponse productToResponse(Product response);
 
-    @Mappings({
+    @Mappings({ // @formatter:off
             @Mapping(target = "id",          ignore = true),
             @Mapping(target = "name",        source = "request.name"),
             @Mapping(target = "price",       source = "request.price"),
             @Mapping(target = "createdAt",   ignore = true),
             @Mapping(target = "updatedAt",   ignore = true),
             @Mapping(target = "changeAgent", source = "userInfo.username")
-    })
+    }) // @formatter:on
     Product requestToProduct(ProductRequest request, UserInfo userInfo);
 
     @InheritConfiguration

@@ -14,7 +14,13 @@ spring:
     enabled: false
   profiles:
     active: test
+  main:
+    allow-bean-definition-overriding: true
 
 eureka:
   client:
     enabled: false
+
+oauth:
+  ribbon:
+    NIWSServerListClassName: br.com.leonardoferreira.ecommerce.product.config.WireMockServerList

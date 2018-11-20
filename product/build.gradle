@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "2.0.4.RELEASE"
+        springBootVersion = "2.1.0.RELEASE"
     }
     repositories {
         mavenCentral()
@@ -22,34 +22,46 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 ext {
-    springCloudVersion = "Finchley.SR1"
+    springCloudVersion = "Greenwich.M1"
 }
 
 dependencies {
-    compile "org.springframework.boot:spring-boot-starter-web"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-    compile "org.springframework.boot:spring-boot-devtools"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-devtools"
 
-    compile "org.projectlombok:lombok"
-    compile "org.postgresql:postgresql"
+    implementation "org.projectlombok:lombok"
+    implementation "org.postgresql:postgresql"
 
-    compile "org.springframework.cloud:spring-cloud-starter-openfeign"
-    compile "org.springframework.cloud:spring-cloud-starter-sleuth"
-    compile "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign"
+    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
 
-    compile "org.mapstruct:mapstruct-jdk8:1.2.0.Final"
-    compile "org.mapstruct:mapstruct-processor:1.2.0.Final"
+    implementation "org.mapstruct:mapstruct-jdk8:1.2.0.Final"
+    implementation "org.mapstruct:mapstruct-processor:1.2.0.Final"
 
-    compile "org.flywaydb:flyway-core"
+    implementation "org.flywaydb:flyway-core"
 
-    testCompile("com.h2database:h2")
-    testCompile("io.rest-assured:rest-assured:3.1.0")
-    testCompile("br.com.leonardoferreira:JBacon:1.1.2")
-    testCompile("com.github.javafaker:javafaker:0.15")
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile 'org.springframework.cloud:spring-cloud-contract-wiremock:1.2.2.RELEASE'
+
+    testImplementation "com.h2database:h2"
+    testImplementation "com.github.tomakehurst:wiremock:2.19.0"
+    testImplementation "io.rest-assured:rest-assured:3.1.1"
+    testImplementation "br.com.leonardoferreira:JBacon:1.2.1"
+    testImplementation "com.github.javafaker:javafaker:0.16"
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: "junit", module: "junit"
+    }
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.2.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+}
+
+test {
+    useJUnitPlatform()
 }
 
 dependencyManagement {

@@ -1,22 +1,20 @@
 package br.com.leonardoferreira.ecommerce.product;
 
-import br.com.leonardoferreira.ecommerce.product.client.UserClient;
 import com.github.javafaker.Faker;
-import org.mockito.Mockito;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.netflix.client.config.IClientConfig;
+import com.netflix.loadbalancer.Server;
+import com.netflix.loadbalancer.ServerList;
+import java.util.Collections;
+import java.util.List;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
+@Configuration
 public class TestConfig {
 
     @Bean
     public Faker faker() {
         return new Faker();
-    }
-
-    @Bean
-    public UserClient userClient() {
-        return Mockito.mock(UserClient.class);
     }
 
 }
