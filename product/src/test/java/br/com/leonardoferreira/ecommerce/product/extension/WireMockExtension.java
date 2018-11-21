@@ -46,7 +46,7 @@ public class WireMockExtension implements BeforeEachCallback, BeforeAllCallback,
                         .buildFrom(StreamUtils.copyToString(resource.getInputStream(), Charset.forName("UTF-8"))));
             }
         } catch (FileNotFoundException e) {
-            log.error("e={}", e.getMessage(), e);
+            log.error("e={}", e.getMessage());
         }
     }
 
