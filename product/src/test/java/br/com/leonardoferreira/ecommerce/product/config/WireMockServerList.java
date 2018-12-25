@@ -11,7 +11,7 @@ public class WireMockServerList extends AbstractServerList<Server> {
     private IClientConfig clientConfig;
 
     @Override
-    public void initWithNiwsConfig(IClientConfig clientConfig) {
+    public void initWithNiwsConfig(final IClientConfig clientConfig) {
         this.clientConfig = clientConfig;
     }
 

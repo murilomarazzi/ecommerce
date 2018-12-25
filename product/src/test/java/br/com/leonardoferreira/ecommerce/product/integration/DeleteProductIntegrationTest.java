@@ -2,7 +2,6 @@ package br.com.leonardoferreira.ecommerce.product.integration;
 
 import br.com.leonardoferreira.ecommerce.product.base.BaseIntegrationTest;
 import br.com.leonardoferreira.ecommerce.product.domain.Product;
-import br.com.leonardoferreira.ecommerce.product.extension.WireMockExtension;
 import br.com.leonardoferreira.ecommerce.product.factory.ProductFactory;
 import br.com.leonardoferreira.ecommerce.product.repository.ProductRepository;
 import io.restassured.RestAssured;

@@ -12,6 +12,7 @@ buildscript {
 
 apply plugin: "java"
 apply plugin: "checkstyle"
+apply plugin: "pmd"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.spring.dependency-management"
 apply from: "gradle/tasks/CreateMigration.gradle"
@@ -71,6 +72,13 @@ dependencyManagement {
 }
 
 checkstyle {
-    toolVersion = "8.11"
-    configFile = new File(rootDir, "checkstyle.xml")
+    toolVersion = "8.15"
+    configFile = new File("${rootDir}/../checkstyle.xml")
+}
+
+pmd {
+    toolVersion = "6.10.0"
+    ruleSets = [ ]
+    consoleOutput = true
+    ruleSetFiles = files("${rootDir}/../pmd-ruleset.xml")
 }
