@@ -24,8 +24,8 @@ public class ListProductIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void findAll() {
-        List<Product> products = productFactory.create(5);
-        Product lastProduct = products.get(4);
+        List<Product> products = productFactory.create(50);
+        Product lastProduct = products.get(19);
 
         // @formatter:off
         RestAssured
@@ -36,12 +36,14 @@ public class ListProductIntegrationTest extends BaseIntegrationTest {
                 .then()
                     .log().all()
                     .statusCode(200)
-                    .body("$", Matchers.hasSize(products.size()))
-                    .body("[4].id", IdMatchers.is(lastProduct.getId()))
-                    .body("[4].name", Matchers.is(lastProduct.getName()))
-                    .body("[4].price", Matchers.is(new DecimalFormat("R$ #.00").format(lastProduct.getPrice())))
-                    .body("[4].createdAt", Matchers.is(lastProduct.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))))
-                    .body("[4].updatedAt", Matchers.is(lastProduct.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
+                    .body("content", Matchers.hasSize(20))
+                    .body("totalElements", Matchers.is(products.size()))
+                    .body("totalPages", Matchers.is(3))
+                    .body("content[19].id", IdMatchers.is(lastProduct.getId()))
+                    .body("content[19].name", Matchers.is(lastProduct.getName()))
+                    .body("content[19].price", Matchers.is(new DecimalFormat("R$ #.00").format(lastProduct.getPrice())))
+                    .body("content[19].createdAt", Matchers.is(lastProduct.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))))
+                    .body("content[19].updatedAt", Matchers.is(lastProduct.getCreatedAt().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
         // @formatter:on
     }
 

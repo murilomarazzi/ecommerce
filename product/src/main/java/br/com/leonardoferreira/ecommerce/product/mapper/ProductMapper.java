@@ -4,13 +4,14 @@ import br.com.leonardoferreira.ecommerce.product.domain.Product;
 import br.com.leonardoferreira.ecommerce.product.domain.UserInfo;
 import br.com.leonardoferreira.ecommerce.product.domain.request.ProductRequest;
 import br.com.leonardoferreira.ecommerce.product.domain.response.ProductResponse;
+import java.util.List;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
@@ -36,4 +37,9 @@ public interface ProductMapper {
 
     @InheritConfiguration
     void updateFromRequest(@MappingTarget Product product, ProductRequest productRequest, UserInfo userInfo);
+
+    default Page<ProductResponse> productsToResponses(final Page<Product> products) {
+        List<ProductResponse> productResponses = productsToResponses(products.getContent());
+        return new PageImpl<>(productResponses, products.getPageable(), products.getTotalElements());
+    }
 }

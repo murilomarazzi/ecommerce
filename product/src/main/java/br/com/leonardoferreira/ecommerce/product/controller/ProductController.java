@@ -4,7 +4,11 @@ import br.com.leonardoferreira.ecommerce.product.domain.UserInfo;
 import br.com.leonardoferreira.ecommerce.product.domain.request.ProductRequest;
 import br.com.leonardoferreira.ecommerce.product.domain.response.ProductResponse;
 import br.com.leonardoferreira.ecommerce.product.service.ProductService;
+import java.net.URI;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,10 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.util.List;
-
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -28,8 +28,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<ProductResponse> findAll() {
-        return productService.findAll();
+    public Page<ProductResponse> findAll(final Pageable pageable) {
+        return productService.findAll(pageable);
     }
 
     @PostMapping
