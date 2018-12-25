@@ -68,12 +68,12 @@ dependencyManagement {
 
 checkstyle {
     toolVersion = "8.15"
-    configFile = new File("${rootDir}/../checkstyle.xml")
+    configFile = new File("${rootDir}/../codestyle/checkstyle.xml")
 }
 
 pmd {
     toolVersion = "6.10.0"
     ruleSets = [ ]
     consoleOutput = true
-    ruleSetFiles = files("${rootDir}/../pmd-ruleset.xml")
+    ruleSetFiles = files("${rootDir}/../codestyle/pmd-ruleset.xml")
 }
