@@ -19,6 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "OAUTH_USER")
 public class User implements UserDetails {
+    private static final long serialVersionUID = 8309786366026512685L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

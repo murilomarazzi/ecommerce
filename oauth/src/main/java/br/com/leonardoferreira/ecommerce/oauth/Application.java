@@ -1,5 +1,6 @@
 package br.com.leonardoferreira.ecommerce.oauth;
 
+import brave.sampler.Sampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -19,4 +20,10 @@ public class Application {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public Sampler sampler() {
+        return Sampler.ALWAYS_SAMPLE;
+    }
+
 }

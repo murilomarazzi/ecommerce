@@ -16,6 +16,8 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  main:
+    allow-bean-definition-overriding: true
 
 management:
   endpoints:

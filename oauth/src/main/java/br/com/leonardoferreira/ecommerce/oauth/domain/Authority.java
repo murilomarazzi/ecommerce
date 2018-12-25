@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "OAUTH_AUTHORITY")
 public class Authority implements GrantedAuthority {
+    private static final long serialVersionUID = -6465236566065642451L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
