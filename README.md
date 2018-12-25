@@ -24,7 +24,7 @@ O cliente deve ser capaz de:
 
 # Resolução
 
-A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, porém é valido lembrar que a ideia é estudar e entender os conceitos de micro serviço na prática, então escolha com cuidado e sabedoria. Para auxiliar aos que querem criar o projeto, há uma branch chamada (resolution)[https://github.com/LeonardoFerreiraa/ecommerce/tree/resolution] que contem a resolução do projeto seguindo a porposta de arquitetura e tecnologias abaixo.
+A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, porém é valido lembrar que a ideia é estudar e entender os conceitos de micro serviço na prática, então escolha com cuidado e sabedoria. Para auxiliar aos que querem criar o projeto, há uma branch chamada [resolution](https://github.com/LeonardoFerreiraa/ecommerce/tree/resolution) que contem a resolução do projeto seguindo a porposta de arquitetura e tecnologias abaixo.
 
 ## Proposta de arquitetura
 
