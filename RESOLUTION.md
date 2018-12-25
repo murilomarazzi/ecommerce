@@ -14,7 +14,7 @@ curl -X POST "http://localhost:8080/oauth/token" \
 
 ## Listar todos os produtos
 
-```
+```sh
 curl http://localhost:8083/products \
     -H "Authorization: Bearer c344093e-5660-448e-b411-d8a2e315859d"
 ```
