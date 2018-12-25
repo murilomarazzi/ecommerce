@@ -14,7 +14,7 @@ Durante uma entrevista a um candidato, houve um questionamento: "Como posso ter 
 
 O cliente deve ser capaz de:
 
-- Realzar seu próprio cadastro
+- Realizar seu próprio cadastro
 - Fazer login
 - Listar todos os produtos
 - Filtrar/Buscar os produtos por características
