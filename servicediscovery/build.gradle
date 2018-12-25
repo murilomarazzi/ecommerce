@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.4.RELEASE'
+		springBootVersion = "2.1.1.RELEASE"
 	}
 	repositories {
 		mavenCentral()
@@ -10,31 +10,44 @@ buildscript {
 	}
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+apply plugin: "checkstyle"
+apply plugin: "pmd"
 
-group = 'br.com.leonardoferreira.ecommerce'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
 	mavenCentral()
 }
 
-
 ext {
-	springCloudVersion = 'Finchley.SR1'
+	springCloudVersion = "Finchley.SR2"
 }
 
 dependencies {
-	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server"
+	implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+checkstyle {
+	toolVersion = "8.15"
+	configFile = new File("${rootDir}/../checkstyle.xml")
+}
+
+pmd {
+	toolVersion = "6.10.0"
+	ruleSets = [ ]
+	consoleOutput = true
+	ruleSetFiles = files("${rootDir}/../pmd-ruleset.xml")
 }

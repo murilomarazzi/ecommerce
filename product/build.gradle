@@ -21,11 +21,10 @@ sourceCompatibility = 1.11
 
 repositories {
     mavenCentral()
-    maven { url "https://repo.spring.io/milestone" }
 }
 
 ext {
-    springCloudVersion = "Greenwich.M1"
+    springCloudVersion = "Finchley.SR2"
 }
 
 dependencies {
@@ -53,8 +52,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: "junit", module: "junit"
     }
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.2.0"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.3.2"
 }
 
 test {
