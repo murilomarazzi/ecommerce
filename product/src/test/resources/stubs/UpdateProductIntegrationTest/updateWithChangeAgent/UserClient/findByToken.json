@@ -1,0 +1,24 @@
+{
+  "request" : {
+    "urlPath": "/oauth/users/me/info",
+    "headers": {
+      "Authorization": {
+        "equalTo": "normalToken"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": 1,
+      "username": "defaultUser",
+      "name": "Default User",
+      "authorities": [
+        "ADMIN"
+      ]
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
