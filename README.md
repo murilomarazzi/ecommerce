@@ -18,7 +18,6 @@ O cliente deve ser capaz de:
 - Fazer login
 - Listar todos os produtos
 - Filtrar/Buscar os produtos por características
-- Montar sua lista de compra
 - Finalizar o pedido
 - Listar e acompanhar seus pedidos
 
