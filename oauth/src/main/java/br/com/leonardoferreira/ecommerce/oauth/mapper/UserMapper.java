@@ -3,7 +3,7 @@ package br.com.leonardoferreira.ecommerce.oauth.mapper;
 import br.com.leonardoferreira.ecommerce.oauth.domain.Authority;
 import br.com.leonardoferreira.ecommerce.oauth.domain.User;
 import br.com.leonardoferreira.ecommerce.oauth.domain.request.CreateUserRequest;
-import br.com.leonardoferreira.ecommerce.oauth.domain.response.UserInfo;
+import br.com.leonardoferreira.ecommerce.oauth.domain.response.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -24,7 +24,7 @@ public interface UserMapper {
         @Mapping(target = "createdAt", dateFormat = "dd/MM/yyyy HH:mm"),
         @Mapping(target = "updatedAt", dateFormat = "dd/MM/yyyy HH:mm")
     })
-    UserInfo userToInfo(User user);
+    UserResponse userToInfo(User user);
 
     default String authorityToString(Authority authority) {
         return authority.getAuthority();
