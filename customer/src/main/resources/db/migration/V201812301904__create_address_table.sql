@@ -1,0 +1,11 @@
+CREATE TABLE ADDRESS (
+  ID               BIGSERIAL                    NOT NULL PRIMARY KEY,
+  CITY             VARCHAR(255)                 NOT NULL,
+  ADDRESS          VARCHAR(255)                 NOT NULL,
+  NEIGHBORHOOD     VARCHAR(255)                 NOT NULL,
+  FEDERATION_UNITY VARCHAR(2)                   NOT NULL,
+  ZIP_CODE         VARCHAR(8)                   NOT NULL,
+  CUSTOMER_ID      BIGINT                       NOT NULL REFERENCES CUSTOMER(ID),
+  CREATED_AT       TIMESTAMP WITHOUT TIME ZONE  NOT NULL,
+  UPDATED_AT       TIMESTAMP WITHOUT TIME ZONE  NOT NULL
+)
