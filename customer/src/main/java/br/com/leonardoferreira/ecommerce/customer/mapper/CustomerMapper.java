@@ -5,10 +5,9 @@ import br.com.leonardoferreira.ecommerce.customer.domain.request.CreateCustomerR
 import br.com.leonardoferreira.ecommerce.customer.domain.request.CreateUserRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
 import org.mapstruct.Mappings;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CustomerMapper {
 
     @Mappings({
@@ -16,10 +15,18 @@ public interface CustomerMapper {
     })
     CreateUserRequest createCustomerToCreateUser(CreateCustomerRequest createCustomerRequest);
 
-    @Mappings({
-            @Mapping(target = "birthDate", dateFormat = "dd/MM/yyyy"),
-            @Mapping(target = MappingConstants.ANY_UNMAPPED, ignore = true)
-    })
-    Customer createCustomerToCustomer(CreateCustomerRequest createCustomerRequest);
+    @Mappings({ // @formatter:off
+            @Mapping(target = "id",         ignore = true),
+            @Mapping(target = "birthday",   source = "request.birthday", dateFormat = "dd/MM/yyyy"),
+            @Mapping(target = "name",       source = "request.name"),
+            @Mapping(target = "email",      source = "request.email"),
+            @Mapping(target = "phone",      source = "request.phone"),
+            @Mapping(target = "userId",     source = "userId"),
+            @Mapping(target = "addresses",  ignore = true),
+            @Mapping(target = "createdAt",  ignore = true),
+            @Mapping(target = "updatedAt",  ignore = true)
+
+    }) // @formatter:on
+    Customer createCustomerToCustomer(CreateCustomerRequest request, Long userId);
 
 }

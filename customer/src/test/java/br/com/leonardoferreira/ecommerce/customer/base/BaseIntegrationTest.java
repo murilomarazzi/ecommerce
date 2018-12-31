@@ -14,7 +14,7 @@ public class BaseIntegrationTest {
     protected Integer port;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         RestAssured.port = port;
         cleanDatabase.clean();
     }

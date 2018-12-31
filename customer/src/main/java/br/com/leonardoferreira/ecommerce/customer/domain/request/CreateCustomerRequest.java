@@ -23,6 +23,6 @@ public class CreateCustomerRequest {
     private String password;
 
     @NotBlank
-    private String birthDate;
+    private String birthday;
 
 }

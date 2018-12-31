@@ -1,0 +1,23 @@
+{
+  "request": {
+    "urlPath": "/oauth/users",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.name"
+      },
+      {
+        "matchesJsonPath": "$.username"
+      },
+      {
+        "matchesJsonPath": "$.password"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "location": "http://localhost:8888/users/123"
+    }
+  }
+}

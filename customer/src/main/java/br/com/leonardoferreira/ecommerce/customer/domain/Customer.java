@@ -31,7 +31,7 @@ public class Customer {
     private String phone;
 
     @Column(nullable = false)
-    private LocalDate birthDate;
+    private LocalDate birthday;
 
     @Column(nullable = false)
     private Long userId;

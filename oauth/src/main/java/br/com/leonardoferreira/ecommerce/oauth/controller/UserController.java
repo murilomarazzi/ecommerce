@@ -44,8 +44,7 @@ public class UserController {
     public HttpEntity<?> create(@RequestBody @Valid final CreateUserRequest createUserRequest) {
         Long id = userService.create(createUserRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/users/{id}")
-                .build(id);
+                .path("/{id}").build(id);
         return ResponseEntity.created(uri).build();
     }
 }

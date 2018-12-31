@@ -23,4 +23,4 @@ eureka:
 
 oauth:
   ribbon:
-    NIWSServerListClassName: br.com.leonardoferreira.ecommerce.product.config.WireMockServerList
+    NIWSServerListClassName: br.com.leonardoferreira.ecommerce.customer.config.WireMockServerList
