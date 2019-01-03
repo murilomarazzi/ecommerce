@@ -6,6 +6,7 @@ import br.com.leonardoferreira.ecommerce.customer.domain.request.CreateCustomerR
 import br.com.leonardoferreira.ecommerce.customer.exception.ResourceNotFoundException;
 import br.com.leonardoferreira.ecommerce.customer.extension.WireMockExtension;
 import br.com.leonardoferreira.ecommerce.customer.factory.CreateCustomerRequestFactory;
+import br.com.leonardoferreira.ecommerce.customer.factory.CustomerFactory;
 import br.com.leonardoferreira.ecommerce.customer.repository.CustomerRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -25,6 +26,9 @@ public class CreateCustomerIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
     private CreateCustomerRequestFactory createCustomerRequestFactory;
+
+    @Autowired
+    private CustomerFactory customerFactory;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -57,4 +61,26 @@ public class CreateCustomerIntegrationTest extends BaseIntegrationTest {
                 () -> Assertions.assertEquals(request.getBirthday(), customer.getBirthday()
                         .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
     }
+
+    @Test
+    public void createUserWithEmailAlreadyInUse() {
+        Customer customer = customerFactory.create();
+        CreateCustomerRequest request = createCustomerRequestFactory.build(empty -> {
+            empty.setEmail(customer.getEmail());
+        });
+
+        // @formatter:off
+        RestAssured
+                .given()
+                    .contentType(ContentType.JSON)
+                    .body(request)
+                .when()
+                    .post("/customers")
+                .then()
+                    .log().all()
+                    .statusCode(HttpStatus.SC_BAD_REQUEST)
+                    .body("message", Matchers.is("Email already in use"));
+        // @formatter:on
+    }
+
 }

@@ -4,6 +4,7 @@ import br.com.leonardoferreira.ecommerce.customer.client.OAuthClient;
 import br.com.leonardoferreira.ecommerce.customer.domain.Customer;
 import br.com.leonardoferreira.ecommerce.customer.domain.request.CreateCustomerRequest;
 import br.com.leonardoferreira.ecommerce.customer.domain.request.CreateUserRequest;
+import br.com.leonardoferreira.ecommerce.customer.exception.EmailAlreadyInUseException;
 import br.com.leonardoferreira.ecommerce.customer.exception.ResourceNotFoundException;
 import br.com.leonardoferreira.ecommerce.customer.mapper.CustomerMapper;
 import br.com.leonardoferreira.ecommerce.customer.repository.CustomerRepository;
@@ -34,6 +35,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     public Long create(final CreateCustomerRequest createCustomerRequest) {
         log.info("Method=create, createCustomerRequest={}", createCustomerRequest);
+
+        if (customerRepository.existsByEmail(createCustomerRequest.getEmail())) {
+            throw new EmailAlreadyInUseException();
+        }
 
         CreateUserRequest customerToCreateUser = customerMapper.createCustomerToCreateUser(createCustomerRequest);
         HttpEntity<?> oauthResponse = oAuthClient.createUser(customerToCreateUser);
