@@ -101,8 +101,7 @@ public class CreateCustomerIntegrationTest extends BaseIntegrationTest {
                     .body("errors.find { it.field == 'password' }.defaultMessage", Matchers.is("must not be blank"))
                     .body("errors.find { it.field == 'name' }.defaultMessage", Matchers.is("must not be blank"))
                     .body("errors.find { it.field == 'birthday' }.defaultMessage", Matchers.is("must not be blank"))
-                    .body("errors.find { it.field == 'phone' }.defaultMessage", Matchers.is("must not be blank"))
-                ;
+                    .body("errors.find { it.field == 'phone' }.defaultMessage", Matchers.is("must not be blank"));
         // @formatter:on
 
     }

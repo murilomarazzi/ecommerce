@@ -50,6 +50,13 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.getId();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Customer findById(final Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Customer not found"));
+    }
+
     protected Long extractUserId(final URI location) {
         log.info("Method=extractUserId, location={}", location);
 

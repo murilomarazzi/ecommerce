@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class EmailAlreadyInUseException extends RuntimeException {
 
     private static final long serialVersionUID = 4990423169793761976L;
-    
+
 }
