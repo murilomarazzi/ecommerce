@@ -83,4 +83,28 @@ public class CreateCustomerIntegrationTest extends BaseIntegrationTest {
         // @formatter:on
     }
 
+    @Test
+    public void failInValidations() {
+        CreateCustomerRequest request = new CreateCustomerRequest();
+
+        // @formatter:off
+        RestAssured
+                .given()
+                    .contentType(ContentType.JSON)
+                    .body(request)
+                .when()
+                    .post("/customers")
+                .then()
+                    .log().all()
+                    .statusCode(HttpStatus.SC_BAD_REQUEST)
+                    .body("errors.find { it.field == 'email' }.defaultMessage", Matchers.is("must not be blank"))
+                    .body("errors.find { it.field == 'password' }.defaultMessage", Matchers.is("must not be blank"))
+                    .body("errors.find { it.field == 'name' }.defaultMessage", Matchers.is("must not be blank"))
+                    .body("errors.find { it.field == 'birthday' }.defaultMessage", Matchers.is("must not be blank"))
+                    .body("errors.find { it.field == 'phone' }.defaultMessage", Matchers.is("must not be blank"))
+                ;
+        // @formatter:on
+
+    }
+
 }
