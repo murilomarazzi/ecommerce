@@ -41,3 +41,7 @@ zuul:
       path: /products/**
       service-id: product
       strip-prefix: false
+    customers:
+      path: /customers/**
+      service-id: customer
+      strip-prefix: false

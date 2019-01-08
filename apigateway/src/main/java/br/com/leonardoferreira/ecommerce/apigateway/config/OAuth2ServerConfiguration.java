@@ -14,6 +14,7 @@ public class OAuth2ServerConfiguration extends ResourceServerConfigurerAdapter {
     public void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/customers").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .cors().disable()

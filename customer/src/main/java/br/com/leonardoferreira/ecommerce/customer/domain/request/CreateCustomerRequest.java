@@ -1,6 +1,8 @@
 package br.com.leonardoferreira.ecommerce.customer.domain.request;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
@@ -12,6 +14,7 @@ public class CreateCustomerRequest {
     @NotBlank
     private String name;
 
+    @Email
     @NotBlank
     private String email;
 
@@ -23,6 +26,7 @@ public class CreateCustomerRequest {
     private String password;
 
     @NotBlank
+    @Pattern(regexp = "[0-9]{2}/[0-9]{2}/[0-9]{4}")
     private String birthday;
 
 }
