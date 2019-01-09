@@ -25,8 +25,6 @@ curl http://localhost:8083/products \
     -H "Authorization: Bearer c344093e-5660-448e-b411-d8a2e315859d"
 ```
 
-## Filtrar/Buscar os produtos por características
-
 ## Finalizar o pedido
 
 ## Listar e acompanhar seus pedidos
