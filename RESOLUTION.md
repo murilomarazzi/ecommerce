@@ -27,8 +27,6 @@ curl http://localhost:8083/products \
 
 ## Filtrar/Buscar os produtos por características
 
-## Montar sua lista de compra
-
 ## Finalizar o pedido
 
 ## Listar e acompanhar seus pedidos
