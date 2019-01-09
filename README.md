@@ -17,7 +17,6 @@ O cliente deve ser capaz de:
 - Realizar seu próprio cadastro
 - Fazer login
 - Listar todos os produtos
-- Filtrar/Buscar os produtos por características
 - Finalizar o pedido
 - Listar e acompanhar seus pedidos
 
