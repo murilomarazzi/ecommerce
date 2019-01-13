@@ -20,12 +20,12 @@ O cliente deve ser capaz de:
 - Consultar Frete (Valor de entrega)
 - Finalizar o pedido
 
-Como o objetivo final do projeto é obter uma experiência prática com micro-serviços e não a criação de uma plataforma completa e ecommerce, algumas funcionalidades foram ignoradas como por exemplo o cancelamento de um pedido, listagem de pedidos, entre outros...
-Porém não há impedimento para a criação dessas funcionalidades, ou a devida integração externa com sistemas externos. Acredito que com essas funcionalidades e proposta de solução, todos os conceitos de micro-serviços podem ser estudados.
+Como o objetivo final do projeto é obter uma experiência prática com micro-serviços e não a criação de uma plataforma completa de ecommerce, algumas funcionalidades básicas de um ecommerce foram ignoradas, como por exemplo o cancelamento de pedidos, listagem de pedidos, etc...
+Porém não há impedimento para a criação dessas funcionalidades, ou a devida integração com sistemas externos, de rastreio ou nota fiscal por exemplo. Acredito que com esses critérios de aceite e proposta de solução, todos os conceitos de micro-serviços podem ser estudados.
 
 # Resolução
 
-A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, porém é valido lembrar que a ideia é estudar e entender os conceitos de micro serviço na prática, então escolha com cuidado e sabedoria. Para auxiliar aos que querem criar o projeto, há uma branch chamada [resolution](https://github.com/LeonardoFerreiraa/ecommerce/tree/resolution) que contem a resolução do projeto seguindo a porposta de arquitetura e tecnologias abaixo.
+A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, porém é valido lembrar que a ideia é estudar e entender os conceitos de micro-serviços na prática, então escolha com cuidado e sabedoria. Para auxiliar aos que querem criar o projeto, há uma branch chamada [resolution](https://github.com/LeonardoFerreiraa/ecommerce/tree/resolution) que contem a solução do projeto seguindo a porposta de solução abaixo.
 
 ## Proposta de solução
 
@@ -44,7 +44,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 ![flux2](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux2.png)
 
 1. Cliente solicita autenticação no serviço "OAuth", passando suas credenciais
-2. O serviço "OAuth", valida e autentica o usuário
+2. O serviço "OAuth", valida e autêntica o usuário
 
 # Listar todos os produtos
 
@@ -60,9 +60,9 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 
 1. O cliente solicita a consulta de frete passando uma lista de produtos
 2. O serviço "Shippings" recebe a requisição
-3. O serviço "Products" é consultado para obeter as dimensões do produto
+3. O serviço "Products" é consultado para obter as dimensões dos produtos
 4. O serviço "Products" consulta e retorna os dados previamente cadastrados
-5. O serviço "Shipping" consulta externamente a taxa de entrega e retorna ao usuário
+5. O serviço "Shipping" calcula a taxa de entrega e retorna ao usuário
 
 # Finalizar o pedido
 
@@ -87,7 +87,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 6. O serviço "Customers" consulta e retorna os dados previamente cadastrados
 7. O serviço "Orders" consulta os dados dos produtos no serviço "Products"
 8. O serviço "Products" consulta e retorna os dados previamente cadastrados
-9. O serviço "Orders" salva as informações e solicita a notificação ao usuário
+9. O serviço "Orders" salva as informações e solicita a notificação o usuário
 10. O serviço "Orders" publica uma mensagem para o processsamento do pagamento
 11. O serviço "Payments" consome a mensagem publicada
 12. O serviço "Payments" processa a solicitação de pagamento
@@ -104,7 +104,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 21. O serviço "Shippings" registra um novo frete
 22. O serviço "Shippings" notifica o usuário sobre o código de rastreio
 23. É feito um processo que de tempos em tempos consulta o status da entrega e notifica o usuário caso haja novos eventos de rastreio
-24. Quando o envio estiver no status de entregue publica uma mensagem para a finalização do pedido
+24. Quando o envio estiver no status de entregue, publica uma mensagem para a finalização do pedido
 25. O serviço "Orders" consome a mensagem altera o status do pedido para entregue e notifica o usuário
 
 As integrações externas dos serviços "Shipping", "Invoices" e "Payments", foram simplesmente ignoradas a fim de minimizar dores de cabeça (hehehe), os conceitos sobre retentativa e resiliencia podem ser praticados entre os serviços do sistema, tornando assim as integrações externas desnecessárias para o objetivo final do projeto.
