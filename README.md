@@ -21,7 +21,8 @@ O cliente deve ser capaz de:
 - Finalizar o pedido
 
 Como o objetivo final do projeto é obter uma experiência prática com micro-serviços e não a criação de uma plataforma completa de ecommerce, algumas funcionalidades básicas de um ecommerce foram ignoradas, como por exemplo o cancelamento de pedidos, listagem de pedidos, etc...
-Porém não há impedimento para a criação dessas funcionalidades, ou a devida integração com sistemas externos, de rastreio ou nota fiscal por exemplo. Acredito que com esses critérios de aceite e proposta de solução, todos os conceitos de micro-serviços podem ser estudados.
+
+Porém não há impedimento para a criação dessas funcionalidades, ou a devida integração com sistemas externos, de rastreio ou nota fiscal por exemplo. Acredito que com esses critérios de aceite e proposta de solução, todos os conceitos de micro-serviços podem ser estudados, sem a necessidade de tais integrações externas ou funcionalidades extras
 
 # Resolução
 
