@@ -30,7 +30,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 
 ## Proposta de solução
 
-# Realizar seu próprio cadastro
+### Realizar seu próprio cadastro
 
 ![flux1](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux1.png)
 
@@ -40,14 +40,14 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 4. O serviço "OAuth" valida e cadastra o usuário
 5. O serviço "Customers" cadastra o usuário
 
-# Fazer login
+### Fazer login
 
 ![flux2](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux2.png)
 
 1. Cliente solicita autenticação no serviço "OAuth", passando suas credenciais
 2. O serviço "OAuth", valida e autêntica o usuário
 
-# Listar todos os produtos
+### Listar todos os produtos
 
 ![flux3](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux3.png)
 
@@ -55,7 +55,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 2. O serviço "Products" recebe a request
 3. O serviço "Products" consulta e retorna os produtos previamente cadastrados
 
-# Consultar Frete (Valor de entrega)
+### Consultar Frete (Valor de entrega)
 
 ![flux4](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux4.png)
 
@@ -65,7 +65,7 @@ A escolha de tecnologias é totalmente aberta a quem for desenvolver o projeto, 
 4. O serviço "Products" consulta e retorna os dados previamente cadastrados
 5. O serviço "Shipping" calcula a taxa de entrega e retorna ao usuário
 
-# Finalizar o pedido
+### Finalizar o pedido
 
 ![flux5](https://github.com/LeonardoFerreiraa/ecommerce/raw/master/diagrams/flux5.png)
 
